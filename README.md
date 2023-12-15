@@ -8,6 +8,18 @@ https://github.com/dennis647/FinanceAppEksamen
 To run the application, just go on the SpringBootFinanceApp.java class and "Run FinanceApp".
 The program runs in the intellij terminal. So after the springboot has booted up everything should work :-)
 
+Features:
+- Create own users
+- Select exsiting users
+- Input Income, expenses & savings amount for each month
+- Input a yearly savings goal
+- Overview of monthly expenses
+- Overview of yearly total income & expenses
+- Category API - Some similar expenses go under the same category
+- Advice API - Gives advice if you're wasting money on bad things
+- 
+
+
 If needed to create tables yourself, these are the create statements:
 
 CREATE TABLE users ( user_id int(11) NOT NULL AUTO_INCREMENT, fullname varchar(100) NOT NULL, savings_goal decimal(10,2) NOT NULL DEFAULT 0.00, PRIMARY KEY (user_id) ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
