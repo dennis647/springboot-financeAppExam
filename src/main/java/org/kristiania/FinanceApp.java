@@ -136,6 +136,9 @@ public class FinanceApp {
                     System.out.println("User not found");
                     financeMain();
                 }
+            } else {
+                System.out.println("Please write yes or no");
+                financeMain();
             }
 
             statement.close();
@@ -334,13 +337,61 @@ public class FinanceApp {
         System.out.println("\nTotal Income for the year: " + totalIncome);
         System.out.println("Total Expenses for the year: " + totalExpenses);
         System.out.println("Total Savings for the year: " + totalSavings);
+
+        System.out.println("\nDo you want a more detailed list of expenses? (yes/no)");
+        String moredetailed = scanner.next();
+
+        if (moredetailed.equalsIgnoreCase("yes")) {
+
+            displayDetailedExpensesForYear(selectedUserId, statement);
+
+        }
+
         System.out.println("\nEnter anything to return");
         scanner.next();
+
         getMonths(connection, statement, scanner);
     }
 
-    // For inserting income data into the tables
+    // Displays the total used in different categories from all the months
+    private static void displayDetailedExpensesForYear(int selectedUserId, Statement statement) {
+        Map<String, Double> categoryTotalMap = new HashMap<>();
 
+        try {
+            for (int i = 1; i <= 12; i++) {
+                ResultSet expensesResultSet = statement.executeQuery(
+                        "SELECT category, SUM(amount) AS total_amount " +
+                                "FROM expenses " +
+                                "WHERE user_id = " + selectedUserId + " AND MONTH(month) = " + i +
+                                " GROUP BY category");
+
+                // Displays the expenses from each month
+                System.out.println("\n--- Month " + i + " ---");
+                while (expensesResultSet.next()) {
+                    String category = expensesResultSet.getString("category");
+                    double totalAmount = expensesResultSet.getDouble("total_amount");
+
+                    System.out.println("Category: " + category + ", Total Amount: " + totalAmount);
+
+                    // Get the total expenses from all the months
+                    categoryTotalMap.put(category, categoryTotalMap.getOrDefault(category, 0.0) + totalAmount);
+                }
+            }
+
+            // Display summary of total expenses for each category
+            System.out.println("\n--- Summary of Total Expenses for Each Category Across All Months ---");
+            for (Map.Entry<String, Double> entry : categoryTotalMap.entrySet()) {
+                System.out.println("Category: " + entry.getKey() + ", Total Amount: " + entry.getValue());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    // For inserting income data into the tables
     private static void insertIncomeData(Connection connection, int selectedUserId, int selectedMonthNumber, double workIncome, double extraIncome) throws SQLException {
         String insertQuery = "INSERT INTO income (user_id, month, work_income, extra_income) VALUES (?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
