@@ -331,26 +331,42 @@ public class FinanceApp {
                 System.out.println("Month " + i + " - Income: " + monthIncome + ", Expenses: " + monthExpenses + ", Savings: " + monthSavings);
             }
 
+            // Fetch the yearly savings goal for the user
+            double yearlySavingsGoal = 0.0;
+            ResultSet yearlySavingsResultSet = statement.executeQuery(
+                    "SELECT savings_goal FROM users WHERE user_id = " + selectedUserId);
+
+            if (yearlySavingsResultSet.next()) {
+                yearlySavingsGoal = yearlySavingsResultSet.getDouble("savings_goal");
+            }
+
+            double remainingSavingsGoal = yearlySavingsGoal - totalSavings;
+            int percentageReached = (int) ((totalSavings / yearlySavingsGoal) * 100.0);
+
+            // Display the total income, expenses
+            System.out.println("\nTotal Income for the year: " + totalIncome);
+            System.out.println("Total Expenses for the year: " + totalExpenses);
+
+            // Display how much has been saved total, savings goal and progress
+            System.out.println("\nTotal saved for the year: " + totalSavings);
+            System.out.println("Yearly savings Goal: " + yearlySavingsGoal);
+            System.out.println("Remaining to reach savings Goal: " + remainingSavingsGoal);
+            System.out.println("\nTotal percentage saved out of goal: " + percentageReached + "%");
+
+            System.out.println("\nDo you want a more detailed list of expenses? (yes/no)");
+            String moreDetailed = scanner.next();
+
+            if (moreDetailed.equalsIgnoreCase("yes")) {
+                displayDetailedExpensesForYear(selectedUserId, statement);
+            }
+
+            System.out.println("\nEnter anything to return");
+            scanner.next();
+
+            getMonths(connection, statement, scanner);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("\nTotal Income for the year: " + totalIncome);
-        System.out.println("Total Expenses for the year: " + totalExpenses);
-        System.out.println("Total Savings for the year: " + totalSavings);
-
-        System.out.println("\nDo you want a more detailed list of expenses? (yes/no)");
-        String moredetailed = scanner.next();
-
-        if (moredetailed.equalsIgnoreCase("yes")) {
-
-            displayDetailedExpensesForYear(selectedUserId, statement);
-
-        }
-
-        System.out.println("\nEnter anything to return");
-        scanner.next();
-
-        getMonths(connection, statement, scanner);
     }
 
     // Displays the total used in different categories from all the months
