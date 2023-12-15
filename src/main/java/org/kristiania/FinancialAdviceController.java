@@ -14,7 +14,7 @@ public class FinancialAdviceController {
     public String provideAdviceEndpoint(ResultSet detailedExpensesResultSet) {
         try {
             FinancialAdviceService.provideAdvice(detailedExpensesResultSet);
-            return "Advice provided successfully"; // Or any success message
+            return "Advice provided successfully";
         } catch (SQLException e) {
             e.printStackTrace();
             return "Failed to provide financial advice.";
