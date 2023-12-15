@@ -5,7 +5,8 @@ Password for mySql database "toor"
 First part of the project:
 https://github.com/dennis647/FinanceAppEksamen
 
-To run the application, just go on the SpringBootFinanceApp.java class and "Run FinanceApp". Then everything should work :-)
+To run the application, just go on the SpringBootFinanceApp.java class and "Run FinanceApp".
+The program runs in the intellij terminal. So after the springboot has booted up everything should work :-)
 
 If needed to create tables yourself, these are the create statements:
 
