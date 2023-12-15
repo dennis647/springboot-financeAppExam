@@ -39,7 +39,7 @@ class Expenses {
 @RestController
 public class FinanceApp {
 
-    public static void main(String[] args) throws SQLException {
+    public static void financeMain() throws SQLException {
 
         // Connect to the database
         try {
@@ -134,7 +134,7 @@ public class FinanceApp {
                     }
                 } else {
                     System.out.println("User not found");
-                    main(args);
+                    financeMain();
                 }
             }
 
