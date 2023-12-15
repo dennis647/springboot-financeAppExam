@@ -377,6 +377,7 @@ public class FinanceApp {
             double amount = scanner.nextDouble();
 
             String category = categorizationServices.categoryExpenses(description);
+
             expenses.addExpense(category, amount);
 
             // Insert the expenses into the database
