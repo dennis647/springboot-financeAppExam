@@ -158,7 +158,7 @@ public class FinanceApp {
     private static double selectedMonthSave = 0.0;
     private static double yearlySavingsGoal;
 
-
+    // Basically the entire application is ran through here
     private static void getMonths(Connection connection, Statement statement, Scanner scanner) {
         try {
 
@@ -287,29 +287,38 @@ public class FinanceApp {
 
         try {
             for (int i = 1; i <= 12; i++) {
-                ResultSet overviewResultSet = statement.executeQuery(
-                        "SELECT work_income, extra_income, NULL AS amount, NULL AS amount_saved FROM income WHERE user_id = " + selectedUserId + " AND MONTH(month) = " + i +
-                                " UNION ALL " +
-                                "SELECT NULL, NULL, amount, NULL FROM expenses WHERE user_id = " + selectedUserId + " AND MONTH(month) = " + i +
-                                " UNION ALL " +
-                                "SELECT NULL, NULL, NULL, amount_saved FROM user_savings WHERE user_id = " + selectedUserId + " AND MONTH(month) = " + i);
-
-
                 double monthIncome = 0.0;
                 double monthExpenses = 0.0;
                 double monthSavings = 0.0;
 
-                if (overviewResultSet.next()) {
-                    monthIncome += overviewResultSet.getDouble("work_income") + overviewResultSet.getDouble("extra_income");
+                // Fetching income for the month
+                ResultSet incomeResultSet = statement.executeQuery(
+                        "SELECT SUM(work_income) + SUM(extra_income) AS total_income " +
+                                "FROM income " +
+                                "WHERE user_id = " + selectedUserId + " AND MONTH(month) = " + i);
+
+                if (incomeResultSet.next()) {
+                    monthIncome = incomeResultSet.getDouble("total_income");
                 }
 
-                if (overviewResultSet.next()) {
-                    monthExpenses += overviewResultSet.getDouble("amount");
+                // Fetching expenses for the month
+                ResultSet expensesResultSet = statement.executeQuery(
+                        "SELECT SUM(amount) AS total_expenses " +
+                                "FROM expenses " +
+                                "WHERE user_id = " + selectedUserId + " AND MONTH(month) = " + i);
+
+                if (expensesResultSet.next()) {
+                    monthExpenses = expensesResultSet.getDouble("total_expenses");
                 }
 
-                if (overviewResultSet.next()) {
-                    monthSavings += overviewResultSet.getDouble("amount_saved");
-                    monthIncome += 1;
+                // Fetching savings for the month
+                ResultSet savingsResultSet = statement.executeQuery(
+                        "SELECT SUM(amount_saved) AS total_savings " +
+                                "FROM user_savings " +
+                                "WHERE user_id = " + selectedUserId + " AND MONTH(month) = " + i);
+
+                if (savingsResultSet.next()) {
+                    monthSavings = savingsResultSet.getDouble("total_savings");
                 }
 
                 totalIncome += monthIncome;
