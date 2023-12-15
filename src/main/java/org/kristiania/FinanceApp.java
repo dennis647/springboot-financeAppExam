@@ -161,7 +161,7 @@ public class FinanceApp {
     private static double selectedMonthSave = 0.0;
     private static double yearlySavingsGoal;
 
-    // Basically the entire application is ran through here
+    // Basically the entire application is run through here
     private static void getMonths(Connection connection, Statement statement, Scanner scanner) {
         try {
 
