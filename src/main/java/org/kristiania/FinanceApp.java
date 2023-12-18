@@ -39,6 +39,8 @@ class Expenses {
 @RestController
 public class FinanceApp {
 
+
+
     public static void financeMain() throws SQLException {
 
         // Connect to the database
@@ -231,7 +233,7 @@ public class FinanceApp {
                     incomeLeft = ((workIncome + extraIncome) - totalExpenses) - monthSavings;
                     System.out.println("Money left: kr " + incomeLeft + ",-");
                     System.out.println("\n--- Saved so far ---");
-                    System.out.println("So far you have saved kr " + monthSavings + ",- out of your goal: kr " + yearlySavingsGoal + ",-");
+                    System.out.println("So far you have saved kr " + monthSavings + ",- out of your goal: kr " + yearlySavingsGoal + ",- (Enter anything to continue)");
                     scanner.next();
 
                     System.out.println("Do you want to view a detailed overview of expenses for this month? (yes/no)");
