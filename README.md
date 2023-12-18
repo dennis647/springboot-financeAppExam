@@ -68,4 +68,5 @@ User stories
 
 
   
+![Diagram Exam](https://github.com/dennis647/springboot-financeAppExam/assets/106619482/3a006836-9b1b-417b-94ea-d79fd2348d0e)
 
