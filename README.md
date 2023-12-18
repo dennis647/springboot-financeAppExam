@@ -2,8 +2,9 @@ Kandidatnr: 2022
 
 Password for mySql database "toor"
 
-First part of the project:
+The start up coding for this project:
 https://github.com/dennis647/FinanceAppEksamen
+(For installing spring boot, i created this new repository)
 
 To run the application, just go on the SpringBootFinanceApp.java class and "Run FinanceApp".
 The program runs in the intellij terminal where you would write all the inputs etc. So after the springboot has booted up everything should work :-)
