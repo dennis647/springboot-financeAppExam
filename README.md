@@ -6,7 +6,7 @@ First part of the project:
 https://github.com/dennis647/FinanceAppEksamen
 
 To run the application, just go on the SpringBootFinanceApp.java class and "Run FinanceApp".
-The program runs in the intellij terminal. So after the springboot has booted up everything should work :-)
+The program runs in the intellij terminal where you would write all the inputs etc. So after the springboot has booted up everything should work :-)
 
 Features:
 - Create own users
