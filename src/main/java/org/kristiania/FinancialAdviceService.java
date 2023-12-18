@@ -32,6 +32,11 @@ public class FinancialAdviceService {
                 System.out.println("You've been spending a lot on alcohol. Amount: kr " + entry.getValue());
                 isBadPurchase = true;
             }
+            if (entry.getKey().equalsIgnoreCase("sweater") || entry.getKey().equalsIgnoreCase("t-shirt") || entry.getKey().equalsIgnoreCase("hoodie")
+                    && entry.getValue() > 3000) {
+                System.out.println("kr " + entry.getValue() + ",- Is a lot to use on one clothing item");
+                isBadPurchase = true;
+            }
         }
 
         if (!isBadPurchase) {
