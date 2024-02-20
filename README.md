@@ -3,6 +3,10 @@ Kandidatnr: 2022
 Password for mySql database "toor"
 
 The start up coding for this project:
+
+- mvn install
+- mvn spring-boot:run
+
 https://github.com/dennis647/FinanceAppEksamen
 (For installing spring boot, i created this new repository)
 

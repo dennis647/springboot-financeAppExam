@@ -1,13 +1,16 @@
 package org.kristiania;
 
+import org.springframework.stereotype.Service;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class FinancialAdviceService {
 
-    public static void provideAdvice(ResultSet detailedExpensesResultSet) throws SQLException {
+    public static String provideAdvice(ResultSet detailedExpensesResultSet) throws SQLException {
         boolean isBadPurchase = false;
         Map<String, Double> categoryExpenses = new HashMap<>();
 
@@ -42,5 +45,10 @@ public class FinancialAdviceService {
         if (!isBadPurchase) {
             System.out.println("No specific advice for your expenses this month.");
         }
+    return "Advice based on user experince";
+    }
+
+    public static String provideAdvice() {
+        return "Advice based on user experience";
     }
 }
