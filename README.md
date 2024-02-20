@@ -6,6 +6,7 @@ The start up coding for this project:
 
 - mvn install
 - mvn spring-boot:run
+- Docker build -t docker .
 
 https://github.com/dennis647/FinanceAppEksamen
 (For installing spring boot, i created this new repository)
