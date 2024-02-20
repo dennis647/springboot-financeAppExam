@@ -4,15 +4,15 @@ Password for mySql database "toor"
 
 The start up coding for this project:
 
-- mvn install
-- mvn spring-boot:run
-- Docker build -t docker .
-
 https://github.com/dennis647/FinanceAppEksamen
 (For installing spring boot, i created this new repository)
 
-To run the application, just go on the SpringBootFinanceApp.java class and "Run FinanceApp".
-The program runs in the intellij terminal where you would write all the inputs etc. So after the springboot has booted up everything should work :-)
+To run the application:
+- mvn install
+- Docker build -t docker .
+- docker run -p 8080:8080 financial-advice-service
+- mvn spring-boot:run
+
 
 If needed to create tables yourself, these are the create statements:
 
