@@ -1,5 +1,7 @@
 package org.kristiania;
 
+import org.kristiania.service.ExpenseCategoryService;
+import org.kristiania.service.FinancialAdviceService;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.*;

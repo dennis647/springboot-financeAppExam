@@ -1,4 +1,4 @@
-package org.kristiania;
+package org.kristiania.controller;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;

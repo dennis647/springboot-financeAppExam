@@ -1,4 +1,4 @@
-package org.kristiania;
+package org.kristiania.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

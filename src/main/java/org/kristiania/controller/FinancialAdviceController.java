@@ -1,5 +1,6 @@
-package org.kristiania;
+package org.kristiania.controller;
 
+import org.kristiania.service.FinancialAdviceService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
