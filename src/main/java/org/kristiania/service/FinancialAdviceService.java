@@ -1,11 +1,24 @@
 package org.kristiania.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestOperations;
+import org.springframework.web.client.RestTemplate;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class FinancialAdviceService {
+
+    private final RestTemplate restTemplate;
+
+    @Autowired
+    public FinancialAdviceService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     public static void provideAdvice(ResultSet detailedExpensesResultSet) throws SQLException {
         boolean isBadPurchase = false;
@@ -42,5 +55,10 @@ public class FinancialAdviceService {
         if (!isBadPurchase) {
             System.out.println("No specific advice for your expenses this month.");
         }
+    }
+    public String getAdviceBasedOnExpenses(String userId) {
+        String url = "http://localhost:8080/api/expenses/total?userId=" + userId;
+        String response = restTemplate.getForObject(url, String.class);
+        return "Financial advice based on expenses: " + response;
     }
 }
